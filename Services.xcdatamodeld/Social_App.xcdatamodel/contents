@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19E250c" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AccountMO" representedClassName="AccountMO" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="login" optional="YES" attributeType="String"/>
+        <attribute name="password" optional="YES" attributeType="String"/>
+        <relationship name="client" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClientMO" inverseName="account" inverseEntity="ClientMO"/>
+        <relationship name="provider" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProviderMO" inverseName="account" inverseEntity="ProviderMO"/>
+    </entity>
+    <entity name="ClientMO" representedClassName="ClientMO" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountMO" inverseName="client" inverseEntity="AccountMO"/>
+        <relationship name="order" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OrderMO" inverseName="client" inverseEntity="OrderMO"/>
+    </entity>
+    <entity name="OrderMO" representedClassName="OrderMO" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="String"/>
+        <attribute name="nameOrder" optional="YES" attributeType="String"/>
+        <attribute name="ready" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="client" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClientMO" inverseName="order" inverseEntity="ClientMO"/>
+        <relationship name="provider" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProviderMO" inverseName="order" inverseEntity="ProviderMO"/>
+    </entity>
+    <entity name="ProviderMO" representedClassName="ProviderMO" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountMO" inverseName="provider" inverseEntity="AccountMO"/>
+        <relationship name="order" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OrderMO" inverseName="provider" inverseEntity="OrderMO"/>
+        <relationship name="services" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ServiceMO" inverseName="provider" inverseEntity="ServiceMO"/>
+    </entity>
+    <entity name="ServiceMO" representedClassName="ServiceMO" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="provider" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProviderMO" inverseName="services" inverseEntity="ProviderMO"/>
+    </entity>
+    <elements>
+        <element name="AccountMO" positionX="-111.9296875" positionY="-438.35546875" width="128" height="103"/>
+        <element name="ClientMO" positionX="-431.796875" positionY="-284.3203125" width="128" height="88"/>
+        <element name="OrderMO" positionX="-437.97265625" positionY="-142.671875" width="128" height="118"/>
+        <element name="ProviderMO" positionX="226.1640625" positionY="-292.19140625" width="128" height="103"/>
+        <element name="ServiceMO" positionX="236.12109375" positionY="-151.6015625" width="128" height="73"/>
+    </elements>
+</model>
